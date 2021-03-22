@@ -12,7 +12,7 @@ import java.util.List;
  * Vzdy bude platit, ze ve vstupnich souborech jsou n-gramy serazeny dle pouzivatelnosti.
  * Tudiz vzdy bude platit, ze prvni n-gram v poli bude nejvice cetny
  */
-public class NGramsLoader {
+public class NGramsComparer {
 
     /** Pismena serazena dle cetnosti pouzivatelnosti v AJ */
     public static final String SORTED_LETTERS_BY_FREQUENCY = " etaoinshrdlucmfwgypbvkxjqz";
@@ -29,7 +29,7 @@ public class NGramsLoader {
     public List<String> bigrams;
     public List<String> trigrams;
 
-    public NGramsLoader() {
+    public NGramsComparer() {
 
         bigrams = loadNGrams(BIGRAMS_FILE);
         trigrams = loadNGrams(TRIGRAMS_FILE);
@@ -62,6 +62,22 @@ public class NGramsLoader {
             e.printStackTrace();
     }
         return tmp;
+    }
+
+
+    // Metoda bude porovnavat slova s desifrovym textem
+
+    public int compareResults(String decrypt) {
+        String tmp = decrypt.replaceAll("\\s+", "");
+        int count = 0;
+        for (String word: words
+             ) {
+            if (tmp.contains(word))
+                count++;
+
+        }
+
+        return count;
     }
 
 
