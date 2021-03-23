@@ -1,15 +1,14 @@
 import java.util.Arrays;
-import java.util.Locale;
 
 public class CaesarCracker {
-    private NGramsComparer loadFrequencies;
+    private NGramsLoader loadFrequencies;
 
     private String cipher;
 
     public String decryptedText;
 
     public CaesarCracker(String cipher) {
-        loadFrequencies = new NGramsComparer();
+        loadFrequencies = new NGramsLoader();
         this.cipher = cipher;
         startCrack();
     }
@@ -76,11 +75,11 @@ public class CaesarCracker {
         char c;
         for (int i = 0; i < cipher.length(); i++) {
             c = cipher.charAt(i);
-            if (c < NGramsComparer.ASCII_VALUE_A || c > NGramsComparer.ASCII_VALUE_Z ) { //mezera
+            if (c < NGramsLoader.ASCII_VALUE_A || c > NGramsLoader.ASCII_VALUE_Z ) { //mezera
                 continue;
             }
             else {
-                frequency[c - NGramsComparer.ASCII_VALUE_A]++;
+                frequency[c - NGramsLoader.ASCII_VALUE_A]++;
             }
 
         }
@@ -106,7 +105,7 @@ public class CaesarCracker {
         System.out.println(Arrays.toString(frequency)+ " max value = " + maxValue + " second max value = " + secondMaxValue + "  " + secondMaxValueIdx);
 
 
-        int stepSec = secondMaxValueIdx + NGramsComparer.ASCII_VALUE_A - NGramsComparer.SORTED_LETTERS_BY_FREQUENCY.charAt(1);
+        int stepSec = secondMaxValueIdx + NGramsLoader.ASCII_VALUE_A - NGramsLoader.SORTED_LETTERS_BY_FREQUENCY.charAt(1);
         System.out.println(stepSec);
 
         String decrypt = decryptCaesar(stepSec);

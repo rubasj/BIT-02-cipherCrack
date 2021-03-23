@@ -12,7 +12,7 @@ import java.util.List;
  * Vzdy bude platit, ze ve vstupnich souborech jsou n-gramy serazeny dle pouzivatelnosti.
  * Tudiz vzdy bude platit, ze prvni n-gram v poli bude nejvice cetny
  */
-public class NGramsComparer {
+public class NGramsLoader {
 
     /** Pismena serazena dle cetnosti pouzivatelnosti v AJ */
     public static final String SORTED_LETTERS_BY_FREQUENCY = " etaoinshrdlucmfwgypbvkxjqz";
@@ -29,7 +29,7 @@ public class NGramsComparer {
     public List<String> bigrams;
     public List<String> trigrams;
 
-    public NGramsComparer() {
+    public NGramsLoader() {
 
         bigrams = loadNGrams(BIGRAMS_FILE);
         trigrams = loadNGrams(TRIGRAMS_FILE);
@@ -52,7 +52,7 @@ public class NGramsComparer {
             String line;
             while((line = br.readLine())!= null ) {
 
-                    tmp.add(line);
+                    tmp.add(line.toUpperCase());
             }
 
 
