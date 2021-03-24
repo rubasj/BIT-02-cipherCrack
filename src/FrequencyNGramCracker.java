@@ -72,25 +72,25 @@ public class FrequencyNGramCracker {
         }
 
         sorted.forEach(System.out::println);
-
-        for (int i = 0; i < sorted.size(); i++) {
-            char c = sorted.get(i);
-            char n = 0;
-            int original;
-            for (int j = 0; j <= 4; j++) {
-                if (j > unassignedValues.length()) break;
-                n = unassignedValues.charAt(j);
-                String cipherTest = cipherText.replaceAll(Character.toString(c), Character.toString(n));
-
-                //TODO dodelat porovnavani
-
-            }
-
-            unassignedValues = unassignedValues.replaceAll(Character.toString(n), "");
-
-        }
-
-        System.out.println(cipherText);
+//
+//        for (int i = 0; i < sorted.size(); i++) {
+//            char c = sorted.get(i);
+//            char n = 0;
+//            int original;
+//            for (int j = 0; j <= 4; j++) {
+//                if (j > unassignedValues.length()) break;
+//                n = unassignedValues.charAt(j);
+//                String cipherTest = cipherText.replaceAll(Character.toString(c), Character.toString(n));
+//
+//                //TODO dodelat porovnavani
+//
+//            }
+//
+//            unassignedValues = unassignedValues.replaceAll(Character.toString(n), "");
+//
+//        }
+//
+//        System.out.println(cipherText);
     }
 
     private String getUnassignedValues() {
@@ -296,9 +296,11 @@ public class FrequencyNGramCracker {
      * Metoda testuje duplicitni znaky. Zkouma, ktery znak je vhodnejsi
      */
     private void compareDuplicates() {
-            for (Map.Entry<Character, Character> entry : duplicitChars.entrySet()) {
-                char key = entry.getKey();
-                char value = entry.getValue();
+        Iterator it = duplicitChars.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry item = (Map.Entry) it.next();
+                char key = (char) item.getKey();
+                char value = (char) item.getValue();
                 char origValue = decryptedChars.get(key);
                 String cipherTest = cipherText.replaceAll(Character.toString(origValue), Character.toString(value));
 
@@ -309,8 +311,8 @@ public class FrequencyNGramCracker {
                     decryptedChars.put(key, value);
                     cipherText = cipherTest;
                 }
-                duplicitChars.remove(key);
-
+                it.remove();
+                if (duplicitChars.isEmpty()) break;
 
             }
     }
