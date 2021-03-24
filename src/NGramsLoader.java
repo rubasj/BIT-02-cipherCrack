@@ -2,10 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Trida nacte pole nejpouzivanejsich n gramu, pismen.
@@ -15,7 +12,7 @@ import java.util.List;
 public class NGramsLoader {
 
     /** Pismena serazena dle cetnosti pouzivatelnosti v AJ */
-    public static final String SORTED_LETTERS_BY_FREQUENCY = " etaoinshrdlucmfwgypbvkxjqz";
+    public static final String SORTED_LETTERS_BY_FREQUENCY = "etaoinshrdlucmfwgypbvkxjqz";
 
     public static final int ASCII_VALUE_A = 'a';
     public static final int ASCII_VALUE_Z = 'z';
@@ -65,9 +62,9 @@ public class NGramsLoader {
     }
 
 
-    // Metoda bude porovnavat slova s desifrovym textem
+    // Metoda bude porovnavat slova s desifrovanym textem
 
-    public int compareResults(String decrypt) {
+    public int compareResultsCaesar(String decrypt) {
         String tmp = decrypt.replaceAll("\\s+", "");
         int count = 0;
         for (String word: words
@@ -75,6 +72,23 @@ public class NGramsLoader {
             if (tmp.contains(word))
                 count++;
 
+        }
+
+        return count;
+    }
+
+    public int compareResultNgram(String decryptedText) {
+
+        String[] strings = decryptedText.split(" ");
+        int count = 0;
+        for (String word : words) {
+            word = word.toUpperCase();
+
+            for (String str : strings) {
+                if (str.equals(word)) {
+                    count++;
+                }
+            }
         }
 
         return count;

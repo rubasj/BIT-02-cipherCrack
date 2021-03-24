@@ -16,11 +16,11 @@ public class CaesarCracker {
     private void startCrack() {
         // Frequency analysis
         String freq = this.frequencyAnalysis();
-        int freqOK = loadFrequencies.compareResults(freq);
+        int freqOK = loadFrequencies.compareResultsCaesar(freq);
         System.out.println("Frekvencni analyza pomoci caesara - vysledek:\n" + freq.toUpperCase() + "\nShoda s anglickym slovnikem: " +  freqOK);
 
         String brute = this.bruteForce();
-        int bruteOK = loadFrequencies.compareResults(brute);
+        int bruteOK = loadFrequencies.compareResultsCaesar(brute);
         System.out.println("Brute force pomoci caesara - vysledek:\n" + brute.toUpperCase() + "\nShoda s anglickym slovnikem: " +  bruteOK);
     }
 
@@ -59,7 +59,7 @@ public class CaesarCracker {
         int countLetters = 26; // pocet pismen v abecede
         for (int i = 0; i < countLetters; i++) {
             String tmp = decryptCaesar(i);
-            int ok = loadFrequencies.compareResults(tmp);
+            int ok = loadFrequencies.compareResultsCaesar(tmp);
             if (bestOK < ok) {
                 res = tmp;
                 bestOK = ok;
@@ -70,7 +70,7 @@ public class CaesarCracker {
 
     private String frequencyAnalysis() {
         System.out.println(cipher);
-        int[] frequency = new int[27]; // pozice 26 je pro mezeru
+        int[] frequency = new int[26]; // na kazde pozici je pismeno dle abecedy
         Arrays.fill(frequency, 0);
         char c;
         for (int i = 0; i < cipher.length(); i++) {
