@@ -69,8 +69,10 @@ public class CipherCrack {
 //        if (this.indexOfCoicidence(textCipher.text.get(0))) // is probably monoalphabetic cipher
 //            caasarCrack = new CaesarCracker(textCipher.text.get(0));
 
-        FrequencyNGramCracker x = new FrequencyNGramCracker(textCipher.text.get(1));
+//        FrequencyNGramCracker x = new FrequencyNGramCracker(textCipher.text.get(1));
+        PolyAlphabetCrack c = new PolyAlphabetCrack(textCipher.text.get(2));
     }
+
 
 
     /**

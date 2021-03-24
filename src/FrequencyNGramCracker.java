@@ -22,9 +22,21 @@ public class FrequencyNGramCracker {
         compareAndChangeTrigrams();
         compareAndChangeBigrams();
         compareAndChangeQuadrigrams();
-        compareByFrequencyLetters();
-
+        compareAndChangeMostFreqWords();
         cipherAlphabet.forEach(System.out::println);
+
+
+    }
+
+    private void compareAndChangeMostFreqWords() {
+        String[] ciphers = cipherText.split(" ");
+
+        for (String cipher : ciphers) {
+            if (cipher.length() >= 2) {
+
+            }
+        }
+
 
 
     }
@@ -71,26 +83,40 @@ public class FrequencyNGramCracker {
             sorted.add(((Map.Entry<Character, Integer>) e).getKey());
         }
 
-        sorted.forEach(System.out::println);
+//        sorted.forEach(System.out::println);
 //
-//        for (int i = 0; i < sorted.size(); i++) {
-//            char c = sorted.get(i);
-//            char n = 0;
-//            int original;
-//            for (int j = 0; j <= 4; j++) {
-//                if (j > unassignedValues.length()) break;
-//                n = unassignedValues.charAt(j);
-//                String cipherTest = cipherText.replaceAll(Character.toString(c), Character.toString(n));
+        for (int i = 0; i < sorted.size(); i++) {
+            char c = sorted.get(i);
+            char tmp1 = 0;
+            char tmp2 = 0;
+//            cipherText = cipherText.replaceAll(Character.toString(c), Character.toString(tmp1));
+
+            int cmp = 0;
+            int newcmp = 0;
+            for (int j = 0; j < unassignedValues.length(); j++ ) {
+
+                if (tmp1 == 0) cipherText = cipherText.replaceAll(Character.toString(c), Character.toString(tmp1));
+
+                tmp2 = unassignedValues.charAt(j);
+
+                if (tmp2 == c) continue;
+
+                cmp = loadFrequencies.compareResultNgram(cipherText);
+
+                String cipherTest = cipherText.replaceAll(Character.toString(tmp1), Character.toString(tmp2));
+                newcmp = loadFrequencies.compareResultNgram(cipherTest);
+
+                if (newcmp > cmp) {
+                    tmp1 = tmp2;
+                    cipherText = cipherTest;
+                    unassignedValues = unassignedValues.replaceAll(Character.toString(tmp1), "");
+                }
+            }
 //
-//                //TODO dodelat porovnavani
-//
-//            }
-//
-//            unassignedValues = unassignedValues.replaceAll(Character.toString(n), "");
-//
-//        }
-//
-//        System.out.println(cipherText);
+
+        }
+
+        System.out.println(cipherText);
     }
 
     private String getUnassignedValues() {

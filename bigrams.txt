@@ -15,6 +15,7 @@ nd
 or
 ar
 al
+ve
 te
 co
 de
@@ -22,6 +23,7 @@ to
 ra
 et
 ed
+be
 it
 sa
 em
