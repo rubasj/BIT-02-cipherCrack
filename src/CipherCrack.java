@@ -67,10 +67,10 @@ public class CipherCrack {
 //        System.out.println("Is mono:" + " " + isMono);
 //
 //        if (this.indexOfCoicidence(textCipher.text.get(0))) // is probably monoalphabetic cipher
-//            caasarCrack = new CaesarCracker(textCipher.text.get(0));
+            caasarCrack = new CaesarCracker(textCipher.text.get(0));
 
-//        FrequencyNGramCracker x = new FrequencyNGramCracker(textCipher.text.get(1));
-        PolyAlphabetCrack c = new PolyAlphabetCrack(textCipher.text.get(2));
+        FrequencyNGramCracker x = new FrequencyNGramCracker(textCipher.text.get(1));
+//        PolyAlphabetCrack c = new PolyAlphabetCrack(textCipher.text.get(2));
     }
 
 

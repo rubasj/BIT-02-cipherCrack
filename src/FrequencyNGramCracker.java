@@ -22,7 +22,10 @@ public class FrequencyNGramCracker {
         compareAndChangeTrigrams();
         compareAndChangeBigrams();
         compareAndChangeQuadrigrams();
-        compareAndChangeMostFreqWords();
+        compareWithOtherTrigrams();
+        compareAndChangeBigrams();
+        compareByFrequencyLetters();
+
         cipherAlphabet.forEach(System.out::println);
 
 

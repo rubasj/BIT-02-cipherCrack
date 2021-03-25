@@ -15,7 +15,7 @@ public class CaesarCracker {
 
     private void startCrack() {
         // Frequency analysis
-        String freq = this.frequencyAnalysis();
+        String freq = this.frequencyAnalysis().replaceAll(" ", "");
         int freqOK = loadFrequencies.compareResultsCaesar(freq);
         System.out.println("Frekvencni analyza pomoci caesara - vysledek:\n" + freq.toUpperCase() + "\nShoda s anglickym slovnikem: " +  freqOK);
 
@@ -105,11 +105,13 @@ public class CaesarCracker {
         System.out.println(Arrays.toString(frequency)+ " max value = " + maxValue + " second max value = " + secondMaxValue + "  " + secondMaxValueIdx);
 
 
-        int stepSec = secondMaxValueIdx + NGramsLoader.ASCII_VALUE_A - NGramsLoader.SORTED_LETTERS_BY_FREQUENCY.charAt(1);
+        int stepSec = secondMaxValueIdx + NGramsLoader.ASCII_VALUE_A - NGramsLoader.SORTED_LETTERS_BY_FREQUENCY.charAt(0);
+        if (stepSec < 1) {
+            stepSec = 26 + stepSec;
+        }
         System.out.println(stepSec);
 
         String decrypt = decryptCaesar(stepSec);
-
 
         return decrypt;
     }

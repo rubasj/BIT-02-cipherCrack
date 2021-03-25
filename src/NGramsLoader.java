@@ -65,7 +65,8 @@ public class NGramsLoader {
     // Metoda bude porovnavat slova s desifrovanym textem
 
     public int compareResultsCaesar(String decrypt) {
-        String tmp = decrypt.replaceAll("\\s+", "");
+        String tmp = decrypt.replaceAll(" ", "");
+        tmp = tmp.toUpperCase();
         int count = 0;
         for (String word: words
              ) {

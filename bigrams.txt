@@ -29,3 +29,5 @@ sa
 em
 ro
 ou
+ch
+sp
